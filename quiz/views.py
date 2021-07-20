@@ -1,14 +1,15 @@
 from django.shortcuts import render,redirect
-from quiz.models import Python,User
+from quiz.models import Python,User,User_stat
 from random import randint
 from django.template import RequestContext
 import smtplib
+
 # Create your views here.
 
 MY_EMAIL = "shuvratcp@gmail.com"
 PASSWORD = "iamacool"
 
-id =0
+id =1
 b = 0
 def python(requests):
         global id
@@ -16,9 +17,16 @@ def python(requests):
             id = id+1
             del requests.session['next']
             if not Python.objects.filter(id=id).exists():
-                mark = requests.session['marks']
-                id=0
-                print(f"this is {mark}")
+                if requests.session.has_key('email'):
+                    user_id = requests.session['user_id']
+                    mark = requests.session['marks']
+                    id=0
+                    del requests.session['marks']
+                    update = User_stat.objects.create(name='python', score=b, user_id=user_id)
+                else:
+                    mark = requests.session['marks']
+                    id = 0
+                    del requests.session['marks']
                 return render(requests, 'score.html',{'marks':mark})
             else:
                 data = Python.objects.get(id=id)
@@ -46,24 +54,33 @@ def python(requests):
 def check(requests):
     global b
     if requests.method == 'POST':
+        requests.session['next'] = 'next'
         user_answer =(requests.POST.get('q1'))
         session_id = requests.session["id"]
         data = Python.objects.get(id=session_id)
-        requests.session['next']='next'
         if data.ans == user_answer:
-            massage = "You are rignt"
             b = b+1
-            print(f"check the {b}")
             requests.session['marks']=b
-            return redirect('/python')
         else:
-            return redirect('/python')
+            requests.session['marks']=b
+        return redirect('/python')
+
+
 
 
 def index(requests):
     return render(requests,'index.html')
+
+
+
+
 def score(requests):
     return render(requests,'score.html')
+
+
+
+
+
 def myaccount(requests):
     return render(requests, 'myaccount.html')
 
@@ -106,6 +123,7 @@ def login(requests):
         data_password = data.password
         if data_email == email and data_password == password:
             requests.session['email'] = data_email
+            requests.session['user_id'] = data.id
             message = f"Welcome {data.name}"
             return render(requests, 'index.html', {'message': message})
         elif data_email != email and data_password != password:
@@ -135,4 +153,21 @@ def verify(requests):
     return render(requests, 'verification.html')
 
 
+def account(requests):
+    if requests.session.has_key('email'):
+        id = requests.session['user_id']
+        data = User_stat.objects.all().filter(user_id=id)
+        my_dic = {'records':data}
+        return render(requests,'account.html',context=my_dic)
+    else:
+        return render(requests,'index.html')
 
+
+
+def logout(requests):
+    try:
+        del requests.session['email']
+        message = "log Out Successfully"
+        return render(requests,'index.html',{'message':message})
+    except:
+        pass

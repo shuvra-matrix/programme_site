@@ -16,7 +16,17 @@ class User(models.Model):
     name = models.CharField(max_length=60,unique=False)
     email = models.EmailField(max_length=254,unique=False)
     password = models.CharField(max_length=50,unique=False)
-    otp = models.IntegerField(max_length=10,unique=False)
+    otp = models.IntegerField(unique=False)
+    datetime = models.DateTimeField(auto_now_add=True, null=True)
     validation = models.CharField(max_length=4,unique=False)
+
+
+class User_stat(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50, unique=False)
+    score = models.CharField(max_length=10, unique=False)
+    date =  models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
+    user_id = models.IntegerField(unique=False)
 
     

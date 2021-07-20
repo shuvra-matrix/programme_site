@@ -32,9 +32,15 @@
                             <li><a class="dropdown-item a_tag" href="#">C</a></li>
                             <li><a class="dropdown-item a_tag" href="#">C++</a></li>
                         </ul>
+                         <li class="nav-item">
+                        <a class="nav-link " id="a_tag2" aria-current="page" href="{% url 'base:account' %}">My Account</a>
+                        </li>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link " id="a_tag5" href="{% url 'base:myaccount' %}">My Account</a>
+                        <a class="nav-link " id="a_tag5" href="{% url 'base:myaccount' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link " id="a_tag5" href="{% url 'base:logout' %}">Log Out</a>
                         </li>
                     </ul>
                     </div>
