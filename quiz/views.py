@@ -15,8 +15,8 @@ def python(requests):
             if not Python.objects.filter(id=id).exists():
                 mark = requests.session['marks']
                 id=0
-                del requests.session['marks']
-                return render(requests, 'score.html',{'mark':mark})
+                print(f"this is {mark}")
+                return render(requests, 'score.html',{'marks':mark})
             else:
                 data = Python.objects.get(id=id)
                 question = data.question
@@ -41,7 +41,7 @@ def python(requests):
 
 
 def check(requests):
-    global b,id
+    global b
     if requests.method == 'POST':
         user_answer =(requests.POST.get('q1'))
         session_id = requests.session["id"]
@@ -50,6 +50,7 @@ def check(requests):
         if data.ans == user_answer:
             massage = "You are rignt"
             b = b+1
+            print(f"check the {b}")
             requests.session['marks']=b
             return redirect('/python')
         else:
@@ -62,3 +63,11 @@ def score(requests):
     return render(requests,'score.html')
 def myaccount(requests):
     return render(requests, 'myaccount.html')
+
+
+def login(requests):
+    return render(requests, 'login.html')
+
+
+def signup(requests):
+    return render(requests, 'signup.html')

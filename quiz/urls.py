@@ -9,6 +9,8 @@ urlpatterns = [
     path("check/",views.check,name='check'),
     path("", views.index, name='index'),
     path("score/",views.score),
-    path("myaccount/",views.myaccount,name="myaccount")
+    path("myaccount/",views.myaccount,name="myaccount"),
+    path("login/",views.login,name="login"),
+    path("signup/",views.signup,name='signup'),
 ]
 

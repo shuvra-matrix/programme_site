@@ -73,3 +73,75 @@ text-align: center;}
 
 .copy{font-size: 1.2rem;}
 .question,h1{font-size: 2.2rem;}
+.score_section {
+    width: 90%;
+    margin: auto;
+    min-height: 50vh;
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;}
+.score_text{
+    color: black;
+}
+
+
+.quiz_name{position: absolute;
+top: 6rem;
+left: 3rem;}
+.quiz_text{
+    text-decoration: underline;
+}
+
+.index_section{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.index_svg{width: 50rem;}
+.index_text{flex: 1 1 20rem;}
+.index_image{flex: 1 1 10rem;}
+
+
+
+.sing_section{
+    width: 70%;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5rem;
+    flex-wrap: wrap;
+    }
+
+
+.signin,
+.singup{
+
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+    
+}
+.signin{margin-right: 2rem;
+height: 25rem;
+flex: 1 1 10rem;}
+
+.singup{height: 25rem;
+flex: 1 1 10rem;
+}
+
+input{
+    margin: 0.2rem;
+}

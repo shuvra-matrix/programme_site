@@ -1,10 +1,32 @@
 {% extends 'head.html' %}
 {% block body_block %}
-
-
-
-
-
+    <section class="sing_section">
+        <div class="signin">
+            <h1>Sign In</h1>
+            <form action="{% url 'base:login' %}" method="POST">
+                {% csrf_token %}
+                <input type="email" name="email" id="email" placeholder="Your Email">
+                <input type="password" name="password" id="" placeholder="password">
+                <br>
+                <br>
+                <input class="btn btn-primary" type="button" value="Sing up">
+            </form>
+            
+        </div>
+        <div class="singup">
+            <h1>Register</h1>
+            <form action="{% url 'base:signup' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" id="" placeholder="Your Name">
+                <input type="email" name="email" id="" placeholder="Email ">
+                <input type="password" name="password" id="" placeholder="password">
+                <input type="password" name="confpassword" id="" placeholder="Confirm Password">
+                <br>
+                <br>
+                <input class="btn btn-primary" type="button" value="Sing up">
+            </form>   
+        </div>
+    </section>
    <footer>
         <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
         <div class="div_footer">
