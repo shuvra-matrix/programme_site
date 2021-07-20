@@ -1,9 +1,12 @@
 from django.shortcuts import render,redirect
-from quiz.models import Python
+from quiz.models import Python,User
 from random import randint
+from django.template import RequestContext
+import smtplib
 # Create your views here.
 
-
+MY_EMAIL = "shuvratcp@gmail.com"
+PASSWORD = "iamacool"
 
 id =0
 b = 0
@@ -65,9 +68,71 @@ def myaccount(requests):
     return render(requests, 'myaccount.html')
 
 
-def login(requests):
-    return render(requests, 'login.html')
 
 
 def signup(requests):
-    return render(requests, 'signup.html')
+    if requests.method == 'POST':
+        name = requests.POST.get('name')
+        email = requests.POST.get('email')
+        password = requests.POST.get('password')
+        con_password = requests.POST.get('confpassword')
+        if password == con_password:
+            otp = randint(100549,998459)
+            with smtplib.SMTP("smtp.gmail.com",port=587) as emails:
+                emails.starttls()
+                emails.login(user=MY_EMAIL,password=PASSWORD)
+                try:
+                    requests.session['email'] = email
+                    emails.sendmail(from_addr=MY_EMAIL, to_addrs=email, msg=f"Subject: OTP FOR VERIFICATION \n\n {otp} ")
+                    validate= 'no'
+                    data = User.objects.create(name=name, email=email, password=password, otp=otp, validation=validate)
+                    return render(requests,'verification.html')
+                except:
+                    message = "Invalid Email Address"
+                    return render(requests,'myaccount.html',{'message':message})
+        else:
+            message = "Password Not Match"
+            return render(requests, 'myaccount.html', {'message': message})
+
+    return render(requests, 'myaccount.html')
+
+def login(requests):
+    if requests.method == 'POST':
+        email = requests.POST.get("email")
+        password = requests.POST.get("password")
+        
+        data = User.objects.get(email=email)
+        data_email = data.email
+        data_password = data.password
+        if data_email == email and data_password == password:
+            requests.session['email'] = data_email
+            message = f"Welcome {data.name}"
+            return render(requests, 'index.html', {'message': message})
+        elif data_email != email and data_password != password:
+            message = "Invalid Email And Passowrd"
+            return render(requests, 'myaccount.html', {'message': message})
+        else:
+            message = "Invalid Email And Passowrd"
+            return render(requests, 'myaccount.html', {'message': message})
+    return render(requests, 'myaccount.html')
+
+
+def verify(requests):
+    if requests.method == 'POST':
+        email = requests.session['email']
+        otp = int(requests.POST.get('otp'))
+        data = User.objects.get(email=email)
+        data_email = data.email
+        data_otp = data.otp
+        if data_otp == otp and data_email == email:
+            update = User.objects.filter(email=email).update(validation="yes")
+            del requests.session['email']
+            message = "Verification Complete"
+            return render(requests, 'myaccount.html', {'message': message})
+        else:
+            message = "Invalid OTP"
+            return render(requests, 'verification.html', {'message': message})
+    return render(requests, 'verification.html')
+
+
+

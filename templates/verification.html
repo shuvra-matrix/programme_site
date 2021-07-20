@@ -1,0 +1,24 @@
+{% extends 'head.html' %}
+{% block body_block %}
+    <section>
+        <p>Check Your Email for OTP</p>
+        <form action="{% url 'base:verify' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="otp" placeholder="Enter OTP">
+                <br>
+                <br>
+                <input type="submit" value="Verify">
+        </form>
+    </section>
+   <footer>
+        <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
+        <div class="div_footer">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Github</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

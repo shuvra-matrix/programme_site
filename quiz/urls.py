@@ -12,5 +12,6 @@ urlpatterns = [
     path("myaccount/",views.myaccount,name="myaccount"),
     path("login/",views.login,name="login"),
     path("signup/",views.signup,name='signup'),
+    path("verify/",views.verify,name='verify'),
 ]
 

@@ -10,4 +10,13 @@ class Python(models.Model):
     options4 = models.CharField(unique=False, max_length=100)
     ans = models.CharField(unique=False,max_length=50)
 
+
+class User(models.Model):
+    id=models.AutoField(primary_key=True)
+    name = models.CharField(max_length=60,unique=False)
+    email = models.EmailField(max_length=254,unique=False)
+    password = models.CharField(max_length=50,unique=False)
+    otp = models.IntegerField(max_length=10,unique=False)
+    validation = models.CharField(max_length=4,unique=False)
+
     
