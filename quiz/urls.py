@@ -5,7 +5,10 @@ from quiz import views
 app_name = "base"
 
 urlpatterns = [
-    path("",views.index,name='index'),
-    path("check/",views.check,name='check')
+    path("python/",views.python,name='python'),
+    path("check/",views.check,name='check'),
+    path("", views.index, name='index'),
+    path("score/",views.score),
+    path("myaccount/",views.myaccount,name="myaccount")
 ]
 

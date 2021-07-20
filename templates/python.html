@@ -1,0 +1,40 @@
+{% extends 'head.html' %}
+{% block body_block %}
+
+    <section class="main__section">
+        <div class="question">
+        <h1>{{question}}</h1>
+        </div>
+        <div class="options">
+            <form action="{% url 'base:check' %}" method="POST">
+                {% csrf_token %}
+                <div class="div_input">
+                    <input type="radio" name="q1" id="" value="{{o1}}">{{o1}}
+                </div>
+                <div class="div_input">
+                <input type="radio" name="q1" id="" value="{{o2}}">{{o2}}
+                </div>
+                <div class="div_input">
+                <input type="radio" name="q1" id="" value="{{o3}}">{{o3}}
+                </div>
+                <div class="div_input">
+                <input type="radio" name="q1" id="" value="{{o4}}">{{o4}}
+                </div>
+                <div class="div_input">
+                    <input class="button" type="submit" name="submit" value="Next">
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
+        <div class="div_footer">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Github</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

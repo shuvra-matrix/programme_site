@@ -1,0 +1,41 @@
+{% extends 'head.html' %}
+{% block body_block %}
+<body>
+      <header class="main__head">
+                <nav class="nav_main">
+                    <div class="header_text">
+                        <h2>Quzer</h2>
+                    </div>
+                    <ul class="ul_main">
+                        <li class="li__main">
+                            <a href="{% url 'base:index' %}">Home</a>
+                        </li>
+                        <li class="li__main">
+                            <a href="{% url 'base:python' %}">Python</a>
+                        </li>
+                        <li class="li__main">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="li__main">
+                            <a href="#">Home</a>
+                        </li>
+                    </ul>
+                 </nav>
+    </header>
+    <section class="score_section">
+        <div class="score">
+            <h3>Your Score Is {{mark}}</h3>
+        </div>
+    </section>
+    <footer>
+        <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
+        <div class="div_footer">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Github</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

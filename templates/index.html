@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{question}}</h1>
-    <h3>{{o1}}</h3>
-    <h3>{{o2}}</h3>
-    <h3>{{o3}}</h3>
-    <h3>{{o4}}</h3>
-    <form action="{% url 'base:check' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" placeholder="Your Answer" name="answer">
-        <input type="submit">
-    </form>
-    <br>
-    <h4>{{anss}}</h4>
-</body>
-</html>
+{% extends 'head.html' %}
+{% block body_block %}
+  
+    <scetion class="index_section">
+        <h1>Hi This is Quizer</h1>
+    </scetion>
+    <footer>
+        <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
+        <div class="div_footer">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Github</a></li>
+            </ul>
+        </div>
+    </footer>
+    </body>
+    </html>
+{% endblock %}
