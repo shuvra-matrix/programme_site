@@ -1,30 +1,35 @@
 {% extends 'head.html' %}
 {% block body_block %}
-<section>
-    <h1>Hi Shuvra</h1>
-    <h4>This all your previous records</h4>
-    <br>
-    <table>
+<section class="ac_section">
+    <div class="ac_text">
+        <h1>Hi {{name}}</h1>
+    </div>
+    <div class="ac_h4">
+        <h4>This all your previous records</h4>
+    </div>
+    <div class="ac_table">
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>Quiz</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Score</th>
+            </tr>
+        {% if records %}
+    
+        {%  for stat in records %}
         <tr>
-            <th>Quiz</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Score</th>
+            <td>{{stat.name}}</td>
+            <td>{{stat.date}}</td>
+            <td>{{stat.time}}</td>
+            <td>{{stat.score}}</td>
         </tr>
-    {% if records %}
-   
-    {%  for stat in records %}
-     <tr>
-        <td>{{stat.name}}</td>
-        <td>{{stat.date}}</td>
-        <td>{{stat.time}}</td>
-        <td>{{stat.score}}</td>
-    </tr>
-    {% endfor %}
-    {% else %}
-    <p>No Data Available</p>
-    {% endif %}
-    </table>
+        {% endfor %}
+        {% else %}
+        <p id="ac_p">No Data Available</p>
+        {% endif %}
+        </table>
+    </div>
 </section>
    <footer>
         <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>

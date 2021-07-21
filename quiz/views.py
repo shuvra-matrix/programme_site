@@ -136,28 +136,41 @@ def login(requests):
 
 
 def verify(requests):
-    if requests.method == 'POST':
-        email = requests.session['email']
-        otp = int(requests.POST.get('otp'))
-        data = User.objects.get(email=email)
-        data_email = data.email
-        data_otp = data.otp
-        if data_otp == otp and data_email == email:
-            update = User.objects.filter(email=email).update(validation="yes")
-            del requests.session['email']
-            message = "Verification Complete"
-            return render(requests, 'myaccount.html', {'message': message})
-        else:
-            message = "Invalid OTP"
-            return render(requests, 'verification.html', {'message': message})
-    return render(requests, 'verification.html')
+    if requests.session.has_key('email'):
+        if requests.method == 'POST':
+            email = requests.session['email']
+            otp1 = requests.POST.get('digit-1')
+            otp2 = requests.POST.get('digit-2')
+            otp3 = requests.POST.get('digit-3')
+            otp4 = requests.POST.get('digit-4')
+            otp5 = requests.POST.get('digit-5')
+            otp6 = requests.POST.get('digit-6')
+            otp =int(f"{otp1}{otp2}{otp3}{otp4}{otp5}{otp6}")
+            print(type(otp))
+            print(otp)
+            data = User.objects.get(email=email)
+            data_email = data.email
+            data_otp = data.otp
+            if data_otp == otp and data_email == email:
+                update = User.objects.filter(email=email).update(validation="yes")
+                del requests.session['email']
+                message = "Verification Complete"
+                return render(requests, 'myaccount.html', {'message': message})
+            else:
+                message = "Invalid OTP"
+                return render(requests, 'verification.html', {'message': message})
+    else:
+        return render(requests, 'index.html')
+    return render(requests, 'index.html')
 
 
 def account(requests):
     if requests.session.has_key('email'):
         id = requests.session['user_id']
+        user_data = User.objects.get(id=id)
+        user_name = user_data.name
         data = User_stat.objects.all().filter(user_id=id)
-        my_dic = {'records':data}
+        my_dic = {'records': data, 'name': user_name}
         return render(requests,'account.html',context=my_dic)
     else:
         return render(requests,'index.html')

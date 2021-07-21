@@ -1,14 +1,24 @@
 {% extends 'head.html' %}
 {% block body_block %}
-    <section>
-        <p>Check Your Email for OTP</p>
-        <form action="{% url 'base:verify' %}" method="POST">
+    <section class="section_verify">        
+            <div class="prompt">
+                Enter the code generated on your mobile device below to log in!
+            </div>
+
+            <form method="POST" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off" action="{% url 'base:verify' %}">
                 {% csrf_token %}
-                <input type="text" name="otp" placeholder="Enter OTP">
+                <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
+                <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" />
+                <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" />
+                <span class="splitter">&ndash;</span>
+                <input type="text" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" />
+                <input type="text" id="digit-5" name="digit-5" data-next="digit-6" data-previous="digit-4" />
+                <input type="text" id="digit-6" name="digit-6" data-previous="digit-5" />
                 <br>
                 <br>
-                <input type="submit" value="Verify">
-        </form>
+                <button class="ver_button">Verify</button>
+            </form>
+        </div>
     </section>
    <footer>
         <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
