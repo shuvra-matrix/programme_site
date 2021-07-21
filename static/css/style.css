@@ -499,3 +499,72 @@ margin: auto;}
     sans-serif;
 
 }
+
+#vector_19{fill: #c2550c;}
+
+
+
+#eye {
+    animation: clock 2s infinite linear;
+    transform-box: fill-box;
+    transform-origin: bottom;
+}
+
+@keyframes clock {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+#left_file {
+    animation: plants 1.5s ease infinite alternate;
+}
+
+
+
+
+#right_file {
+    animation: plants 2s ease infinite alternate;
+}
+
+@keyframes plants {
+
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(-30%);
+    }
+
+}
+
+
+
+
+
+#leaf {
+    animation: plantss 2s infinite alternate;
+    transform-box: fill-box;
+    transform-origin: top
+}
+
+
+@keyframes plantss {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(40deg);
+    }
+
+}
