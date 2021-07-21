@@ -170,6 +170,7 @@ left: 3rem;}
     align-items: center;
     margin-top: 5rem;
     flex-wrap: wrap;
+    padding-bottom: 2rem;
     }
 
 
@@ -177,7 +178,7 @@ left: 3rem;}
 .singup{
     color: white;
     width: 90%;
-    margin: auto;
+    margin:auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -186,12 +187,23 @@ left: 3rem;}
     border: 1px solid rgb(0, 0, 0);
     
 }
-.signin{margin-right: 2rem;
+.signin{position: relative;
 height: 25rem;
-flex: 1 1 10rem;}
+flex: 1 1 10rem;
+width: 40rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#ac_button{font-size: 1.4rem;}
+#ac_button2 {
+    font-size: 1.4rem;
+}
 
 .singup{height: 25rem;
 flex: 1 1 10rem;
+width: 33rem;
 }
 
 input{
@@ -393,3 +405,18 @@ margin-right: auto;}
     }
 }
     
+@media only screen and (max-width:512px) {
+    .log_from,input {
+        font-size: 1rem;
+    }
+    .log_reg,input{font-size: 1rem;}
+    #ac_button {
+        font-size: 1rem;
+    }
+
+    #ac_button2 {
+        font-size: 1rem;
+
+    }
+    
+}
