@@ -29,4 +29,22 @@ class User_stat(models.Model):
     time = models.TimeField(auto_now_add=True)
     user_id = models.IntegerField(unique=False)
 
-    
+
+class Cplus(models.Model):
+    id = models.AutoField(primary_key=True)
+    question = models.CharField(max_length=500, unique=False)
+    options1 = models.CharField(max_length=100, unique=False)
+    options2 = models.CharField(max_length=100, unique=False)
+    options3 = models.CharField(max_length=100, unique=False)
+    options4 = models.CharField(unique=False, max_length=100)
+    ans = models.CharField(unique=False, max_length=50)
+
+
+class C(models.Model):
+    id = models.AutoField(primary_key=True)
+    question = models.CharField(max_length=500, unique=False)
+    options1 = models.CharField(max_length=100, unique=False)
+    options2 = models.CharField(max_length=100, unique=False)
+    options3 = models.CharField(max_length=100, unique=False)
+    options4 = models.CharField(unique=False, max_length=100)
+    ans = models.CharField(unique=False, max_length=50)

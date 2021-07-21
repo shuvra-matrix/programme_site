@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from quiz.models import Python,User,User_stat
+from quiz.models import Python,User,User_stat,Cplus,C
 from random import randint
 from django.template import RequestContext
 import smtplib
@@ -47,8 +47,98 @@ def python(requests):
             requests.session['id'] = data.id
             return render(requests, 'python.html', {'question': question, 'o1': o1, 'o2': o2, 'o3': o3, 'o4': o4})
         
-    
-        
+
+def cplus(requests):
+        global id
+        if 'next' in requests.session:
+            id = id+1
+            del requests.session['next']
+            if not Cplus.objects.filter(id=id).exists():
+                if requests.session.has_key('email'):
+                    user_id = requests.session['user_id']
+                    mark = requests.session['marks']
+                    id = 0
+                    del requests.session['marks']
+                    update = User_stat.objects.create(
+                        name='C++', score=b, user_id=user_id)
+                else:
+                    mark = requests.session['marks']
+                    id = 0
+                    del requests.session['marks']
+                return render(requests, 'score.html', {'marks': mark})
+            else:
+                data = Cplus.objects.get(id=id)
+                question = data.question
+                o1 = data.options1
+                o2 = data.options2
+                o3 = data.options3
+                o4 = data.options4
+                requests.session['id'] = data.id
+                return render(requests, 'cplus.html', {'question': question, 'o1': o1, 'o2': o2, 'o3': o3, 'o4': o4})
+        else:
+            data = Cplus.objects.get(id=1)
+            question = data.question
+            o1 = data.options1
+            o2 = data.options2
+            o3 = data.options3
+            o4 = data.options4
+            requests.session['id'] = data.id
+            return render(requests, 'cplus.html', {'question': question, 'o1': o1, 'o2': o2, 'o3': o3, 'o4': o4})
+
+
+def c(requests):
+    global id
+    if 'next' in requests.session:
+        id = id+1
+        del requests.session['next']
+        if not C.objects.filter(id=id).exists():
+            if requests.session.has_key('email'):
+                user_id = requests.session['user_id']
+                mark = requests.session['marks']
+                id = 0
+                del requests.session['marks']
+                update = User_stat.objects.create(name='C', score=b, user_id=user_id)
+            else:
+                mark = requests.session['marks']
+                id = 0
+                del requests.session['marks']
+            return render(requests, 'score.html', {'marks': mark})
+        else:
+                data = C.objects.get(id=id)
+                question = data.question
+                o1 = data.options1
+                o2 = data.options2
+                o3 = data.options3
+                o4 = data.options4
+                requests.session['id'] = data.id
+                return render(requests, 'c.html', {'question': question, 'o1': o1, 'o2': o2, 'o3': o3, 'o4': o4})
+    else:
+        data = C.objects.get(id=1)
+        question = data.question
+        o1 = data.options1
+        o2 = data.options2
+        o3 = data.options3
+        o4 = data.options4
+        requests.session['id'] = data.id
+        return render(requests, 'c.html', {'question': question, 'o1': o1, 'o2': o2, 'o3': o3, 'o4': o4})
+
+
+def ccheck(requests):
+    global b
+    if requests.method == 'POST':
+        requests.session['next'] = 'next'
+        user_answer = (requests.POST.get('q1'))
+        session_id = requests.session["id"]
+        data = C.objects.get(id=session_id)
+        if data.ans == user_answer:
+            b = b+1
+            requests.session['marks'] = b
+            return redirect('/cprog')
+        else:
+            requests.session['marks'] = b
+            return redirect('/cprog')
+
+
 
 
 def check(requests):
@@ -61,11 +151,25 @@ def check(requests):
         if data.ans == user_answer:
             b = b+1
             requests.session['marks']=b
+            return redirect('/python')  
         else:
             requests.session['marks']=b
         return redirect('/python')
 
 
+def cquiz(requests):
+    global b
+    if requests.method == 'POST':
+        requests.session['next'] = 'next'
+        user_answer = (requests.POST.get('q1'))
+        session_id = requests.session["id"]
+        data = Cplus.objects.get(id=session_id)
+        if data.ans == user_answer:
+            b = b+1
+            requests.session['marks'] = b
+        else:
+            requests.session['marks'] = b
+        return redirect('/cplus')
 
 
 def index(requests):

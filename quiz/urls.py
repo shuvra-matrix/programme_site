@@ -15,5 +15,11 @@ urlpatterns = [
     path("verify/",views.verify,name='verify'),
     path("account/",views.account,name='account'),
     path("logout/",views.logout,name='logout'),
+    path("cplus/",views.cplus,name='cplus'),
+    path("cquiz/", views.cquiz, name='cquiz'),
+    path("c/",views.ccheck,name='c'),
+    path("cprog/",views.c, name='cprog'),
+
 ]
+
 

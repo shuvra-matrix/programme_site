@@ -3,14 +3,14 @@
 
     <section class="main__section">
         <div class="quiz_name">
-             <h1 class="quiz_text">Python Quiz</h1>
+             <h1 class="quiz_text">C++ Quiz</h1>
         </div>
         <div id="cont">
             <div class="question">
             <h1>{{question}}</h1>
             </div>
             <div class="options">
-                <form action="{% url 'base:check' %}" method="POST">
+                <form action="{% url 'base:cquiz' %}" method="POST">
                     {% csrf_token %}
                     <div class="div_input">
                         <input type="radio" name="q1" class="q_radio" id="rad1" value="{{o1}}">{{o1}}
@@ -24,7 +24,7 @@
                     <div class="div_input">
                     <input type="radio" name="q1" id="" class="q_radio" value="{{o4}}">{{o4}}
                     </div>
-                    <input type="hidden" name="python" value="python">
+                    <input type="hidden" name="cplus" value="plus">
                     <div class="div_input">
                         <input class="button" type="submit" class="q_radio" name="submit" value="Next">
                     </div>
