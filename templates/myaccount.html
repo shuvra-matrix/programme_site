@@ -1,12 +1,12 @@
 {% extends 'head.html' %}
 {% block body_block %}
-    <section class="sing_section">
+    <div class="sing_section">
         <div class="signin">
             <h1>Sign In</h1>
             <form action="{% url 'base:login' %}" method="POST" class="log_from">
                 {% csrf_token %}
-                <input type="email" name="email" id="email" placeholder="Your Email" required>
-                <input type="password" name="password" id="" placeholder="password" required>
+                <input class="inputt" type="email" name="email" id="email" placeholder="Your Email" required>
+                <input class="inputt" type="password" name="password" id="" placeholder="password" required>
                 <br>
                 <br>
                 <input class="btn btn-primary" type="submit" id="ac_button2" value="Sing In">
@@ -17,16 +17,17 @@
             <h1>Register</h1>
             <form action="{% url 'base:signup' %}" method="POST" class="reg_from">
                 {% csrf_token %}
-                <input type="text" name="name" id="" placeholder="Your Name" required>
-                <input type="email" name="email" id="" placeholder="Email " required>
-                <input type="password" name="password" id="" placeholder="password" required>
-                <input type="password" name="confpassword" id="" placeholder="Confirm Password" required>
-                <br>
+                <div class="inputs_div">
+                <input id="input1" type="text" name="name" id="" placeholder="Your Name" required>
+                <input id="input2" type="email" name="email" id="" placeholder="Email " required>
+                <input id="input3" type="password" name="password" id="" placeholder="password" required>
+                <input id="input4" type="password" name="confpassword" id="" placeholder="Confirm Password" required>
+                </div>
                 <br>
                 <input class="btn btn-success" type="submit" value="Sing up" id="ac_button">
             </form>   
         </div>
-    </section>
+    </div>
       <footer>
         <h3 class="copy"> <a href="https://shuvra.tech/">Shuvra Chakrabarty &copy 2021</a></h3>
         <div class="div_footer">
