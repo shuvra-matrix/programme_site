@@ -201,7 +201,10 @@ def signup(requests):
         email = requests.POST.get('email')
         password = requests.POST.get('password')
         con_password = requests.POST.get('confpassword')
-        if password == con_password:
+        if User.objects.filter(email=email).exists():
+            message = "You have already registered ! Go for Log In  "
+            return render(requests, 'index.html', {"message": message})
+        elif password == con_password:
             otp = randint(100549,998459)
             with smtplib.SMTP("smtp.gmail.com",port=587) as emails:
                 emails.starttls()
