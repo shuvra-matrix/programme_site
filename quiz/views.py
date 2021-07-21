@@ -1,8 +1,12 @@
+import json
 from django.shortcuts import render,redirect
 from quiz.models import Python,User,User_stat,Cplus,C
 from random import randint
 from django.template import RequestContext
 import smtplib
+import requests
+import urllib
+import json
 
 # Create your views here.
 
@@ -296,3 +300,22 @@ def logout(requests):
             pass
     else:
         return render(requests,'index.html')
+
+def short(requestss):
+        if requestss.method == 'POST':
+            long = requestss.POST.get('short')
+            url = "https://api.short.io/domains/"
+
+            res = requests.post('https://api.short.io/links', {
+                'domain': '1cu7.short.gy',
+                'originalURL': f'{long}',
+            }, headers={
+                'authorization': 'EFzqimjRzi8RCFgDBuNZMEmAb3vLnJgD'
+            }, json=True)
+            data = res.json()
+            short = data['secureShortURL']
+            return render(requestss,'short.html',{'shorts':short})
+        return render(requestss,'short.html')
+
+
+

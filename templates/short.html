@@ -1,0 +1,35 @@
+{% extends 'head.html' %}
+{% block body_block %}
+    <section class="short_section">
+        <div class="short">
+            <h3 style="width: 80%;margin: auto; text-align: center;padding-bottom: 1rem;" " class="short_text">Hi Wana Short Your URL!</h3>
+        </div>
+            <form action="{% url 'base:short' %}" method="POST">
+                {% csrf_token %}
+               <div style="width: 80%;margin: auto; text-align: center;" class="input-groups  mb-3">
+                        <input id="short_input" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="short">
+                        <button style="margin-top: 1rem; padding: .8rem 1.5rem;" class="btn btn-danger" type="submit" id="button-addon2">Get</button>
+                </div>
+            </form>
+        </div>
+         {% if shorts %}
+        <div class="short_message" style='color:white; text-align:center; width:90%, margin:auto;display:flex;'>
+            <h3 style='color:white;'>Your Short URL : {{shorts}}</h2>
+        </div>
+        {% endif %}
+    </section>
+    <footer>
+        <h3 class="copy">Shuvra Chakrabarty &copy 2021</h3>
+        <div class="div_footer">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Github</a></li>
+            </ul>
+        </div>
+    </footer>
+    {% if mes %}
+    <script>alert('{{mes}}')</script>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

@@ -19,6 +19,7 @@ urlpatterns = [
     path("cquiz/", views.cquiz, name='cquiz'),
     path("c/",views.ccheck,name='c'),
     path("cprog/",views.c, name='cprog'),
+    path("short/",views.short, name='short')
 
 ]
 

@@ -462,3 +462,19 @@ margin-right: auto;}
     height: 10rem;}
     
 }
+.short_section{width: 70%;
+margin: auto;}
+
+.input-group{
+    margin: 2rem 2rem;
+}
+
+#input-groups{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 90%;
+    margin: auto;
+}
+
