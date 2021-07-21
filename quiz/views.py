@@ -125,7 +125,12 @@ def login(requests):
             requests.session['email'] = data_email
             requests.session['user_id'] = data.id
             message = f"Welcome {data.name}"
-            return render(requests, 'index.html', {'message': message})
+            requests.session['log'] = 'log'
+            context = {
+                'message':message,
+                'log':'log'
+            }
+            return render(requests, 'index.html', context=context)
         elif data_email != email and data_password != password:
             message = "Invalid Email And Passowrd"
             return render(requests, 'myaccount.html', {'message': message})
