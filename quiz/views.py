@@ -303,7 +303,7 @@ def logout(requests):
 
 def short(requestss):
         if requestss.method == 'POST':
-            long = requestss.POST.get('short')
+            long = requestss.POST.get('short',)
             url = "https://api.short.io/domains/"
 
             res = requests.post('https://api.short.io/links', {
