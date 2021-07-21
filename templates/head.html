@@ -37,15 +37,12 @@
                         <a class="nav-link " id="a_tag2" aria-current="page" href="{% url 'base:account' %}">My Account</a>
                         </li>
                         </li>
-                        {% if log %}
                             <li class="nav-item">
                             <a class="nav-link " id="a_tag5" href="{% url 'base:logout' %}">Log Out</a>
                             </li>
-                        {% else %}
                              <li class="nav-item">
                             <a class="nav-link " id="a_tag5" href="{% url 'base:myaccount' %}">Log In</a>
                             </li>
-                        {% endif %}
                     </ul>
                     </div>
                 </div>

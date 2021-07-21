@@ -23,7 +23,7 @@ html{
 }
 
 footer{
-    padding: .3rem ;
+    padding: .6rem ;
     background:#28282a;
     position:fixed;
     bottom: 0px;
@@ -53,8 +53,11 @@ footer,li{
 footer,a{
     text-decoration: none;
     color: white;
+    font-size: 1rem;
 
 }
+footer,
+a:hover{color: orange;}
 
 .colors{padding: 1.2rem;
 font-size: 1.5rem;
@@ -113,26 +116,38 @@ left: 3rem;}
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .index_svg{width: 60rem;}
-.index_text{flex: 1 1 20rem;height: 21rem;}
+.index_text{flex: 1 1 10rem;height: 21rem;width: 80%;margin: auto;}
 .index_image{flex: 1 1 10rem;}
 
 
-.index_text h1
+
+.index_text h1 
 {   
     color: white;
     overflow: hidden;
     border-right: .10em solid orange;
     white-space: nowrap;
     margin: 0 auto;
-    letter-spacing: .15em;
+    flex-wrap: wrap;
+    letter-spacing: .15rem;
     animation: typing 3.5s steps(40, end),
     blink .75s step-end infinite;
+}
+.index_text p{
+    padding-top: 1rem;
+    color: rgb(9, 209, 166);
+    border-right: .10em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end),
+        blink .75s step-end infinite;
 }
 @keyframes typing {
     from {
@@ -206,6 +221,12 @@ flex: 1 1 10rem;
 width: 33rem;
 }
 
+.index_text,p{
+    padding-top: 1.5rem;
+    color: #c2550c;
+    font-size: 1.2rem;
+}
+
 input{
     margin: 0.4rem;
     color: rgb(0, 0, 0);
@@ -225,6 +246,7 @@ border-radius: 12px;}
 
 .ac_section{
     width: 80%;
+    max-height: 100vh;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -232,7 +254,7 @@ border-radius: 12px;}
     text-align: center;
 }
 
-.ac_text,.ac_h4,.ac_table{margin: 1.2rem;}
+.ac_text,.ac_h4,.ac_table{margin: 1rem;}
 
 
 
@@ -359,13 +381,13 @@ margin-right: auto;}
 
 
 
-@media only screen and (max-width:741px) {
+@media only screen and (max-width:780px) {
     .index_svg {
-        width: 40rem;
+        width: 50rem;
     }
 
     .index_text{
-        margin-top: 5rem;
+        margin-top: 2rem;
         text-align: center;
         flex: 1 1 5rem;
     }
@@ -382,9 +404,27 @@ margin-right: auto;}
 }
 
 @media only screen and (max-width:872px) {
-    .index_svg{width: 40rem;}
+    .index_svg{width: 45rem;}
 
+     .index_svg {
+         width: 40rem;
+     }
 
+     .index_text {
+         margin-top: 2rem;
+         text-align: center;
+         flex: 1 1 5rem;
+     }
+
+     .index_image {
+         display: flex;
+         width: 90%;
+         margin: auto;
+         flex: 1 1 10rem;
+         justify-content: center;
+         align-items: center;
+
+     }
 
 
 }
@@ -418,5 +458,7 @@ margin-right: auto;}
         font-size: 1rem;
 
     }
+    .index_text{margin-top: 1rem;
+    height: 10rem;}
     
 }

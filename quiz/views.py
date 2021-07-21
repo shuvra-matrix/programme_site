@@ -287,9 +287,12 @@ def account(requests):
 
 
 def logout(requests):
-    try:
-        del requests.session['email']
-        message = "log Out Successfully"
-        return render(requests,'index.html',{'message':message})
-    except:
-        pass
+    if requests.session.has_key('email'):
+        try:
+            del requests.session['email']
+            message = "log Out Successfully"
+            return render(requests,'index.html',{'message':message})
+        except:
+            pass
+    else:
+        return render(requests,'index.html')
