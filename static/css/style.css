@@ -7,7 +7,16 @@ body{
     background-color: #171616;
 }
 
-
+.svge,svg{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 30rem;
+}
+.svge_score {
+    display: flex;
+    width: 60rem;
+}
 
 html{
     font-size: 80.5%;
