@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
+
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Raleway',
+    font-family: 'Noto Sans JP',
     sans-serif;
     background-color: #171616;
 }
@@ -267,7 +272,7 @@ text-align: center;
 flex-direction: column;
 flex-wrap: wrap;}
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
 
 
 
@@ -480,4 +485,17 @@ margin: auto;}
 
 .nav__icon {
     font-size: 1.2rem;
+}
+
+#a_tag1,
+#a_tag2,
+#a_tag3,
+#a_tag4,
+#a_tag5,
+#a_tag6
+{
+    color: white;
+    font-family: 'Noto Sans JP',
+    sans-serif;
+
 }
