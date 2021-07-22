@@ -234,6 +234,7 @@ def signup(requests):
     return render(requests, 'myaccount.html')
 
 def login(requests):
+    requests.session['log'] = 'login'
     if requests.method == 'POST':
         email = requests.POST.get("email")
         password = requests.POST.get("password")
@@ -245,10 +246,10 @@ def login(requests):
             requests.session['email'] = data_email
             requests.session['user_id'] = data.id
             message = f"Welcome {data.name}"
-            requests.session['log'] = 'log'
+            log = requests.session['log']
             context = {
                 'message':message,
-                'log':'log'
+                'log': log
             }
             return render(requests, 'index.html', context=context)
         elif data_email != email and data_password != password:
@@ -306,6 +307,7 @@ def logout(requests):
     if requests.session.has_key('email'):
         try:
             del requests.session['email']
+            del requests.session['log']
             message = "log Out Successfully"
             return render(requests,'index.html',{'message':message})
         except:

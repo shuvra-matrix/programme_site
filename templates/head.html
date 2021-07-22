@@ -35,9 +35,11 @@
                             <li><a class="dropdown-item a_tag" href="{% url 'base:cplus' %}">C++</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {%  if 'log' in request.session %}
+                    <li class="nav-item" style="padding-right: 0px;">
                         <a class="nav-link " id="a_tag3" aria-current="page" href="{% url 'base:account' %}">My Account</a>
                         </li>
+                        {% endif %}
                          <li class="nav-item">
                         <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle " id="a_tag4" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,12 +48,15 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="{% url 'base:short' %}">Url Shortener</a></li>
                         </ul></li>
+                        {%  if 'log' in request.session %}
                             <li class="nav-item">
                             <a class="nav-link " id="a_tag5" href="{% url 'base:logout' %}">Log Out</a>
                             </li>
+                        {% else %}
                              <li class="nav-item">
                             <a class="nav-link " id="a_tag6" href="{% url 'base:myaccount' %}">Log In</a>
                             </li>
+                         {% endif %}
                     </ul>
                     </div>
                 </div>
