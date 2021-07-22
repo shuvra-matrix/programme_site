@@ -13,26 +13,24 @@ import json
 MY_EMAIL = "shuvratcp@gmail.com"
 PASSWORD = "iamacool"
 
-id =1
-b = 0
+
 def python(requests):
-        global id
-        global b
         if 'next' in requests.session:
-            id = id+1
+            requests.session['no'] = int(requests.session['no']) + 1
+            id = int(requests.session['no'])
             del requests.session['next']
             if not Python.objects.filter(id=id).exists():
                 if requests.session.has_key('email'):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
-                    id=1
-                    b=0
+                    id= requests.session['no']
+                    requests.session['score'] = 0
                     del requests.session['marks']
                     update = User_stat.objects.create(name='python', score=b, user_id=user_id)
                 else:
                     mark = requests.session['marks']
-                    id = 1
-                    b=0
+                    id = requests.session['no']
+                    requests.session['score'] = 0
                     del requests.session['marks']
                 return render(requests, 'score.html',{'marks':mark})
             else:
@@ -56,8 +54,8 @@ def python(requests):
         
 
 def cplus(requests):
-        global id
-        global b
+        requests.session['no'] = int(requests.session['no']) + 1
+        id = int(requests.session['no'])
         if 'next' in requests.session:
             id = id+1
             del requests.session['next']
@@ -65,15 +63,15 @@ def cplus(requests):
                 if requests.session.has_key('email'):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
-                    id = 1
-                    b=0
+                    id = requests.session['no']
+                    requests.session['score'] = 0
                     del requests.session['marks']
                     update = User_stat.objects.create(
                         name='C++', score=b, user_id=user_id)
                 else:
                     mark = requests.session['marks']
-                    id = 1
-                    b=0
+                    id = requests.session['no']
+                    requests.session['score'] = 0
                     del requests.session['marks']
                 return render(requests, 'score.html', {'marks': mark})
             else:
@@ -97,23 +95,22 @@ def cplus(requests):
 
 
 def c(requests):
-    global id
-    global b
+    requests.session['no'] = int(requests.session['no']) + 1
+    id = int(requests.session['no'])
     if 'next' in requests.session:
-        id = id+1
         del requests.session['next']
         if not C.objects.filter(id=id).exists():
             if requests.session.has_key('email'):
                 user_id = requests.session['user_id']
                 mark = requests.session['marks']
-                id = 1
-                b=0
+                id = int(requests.session['no'])
+                requests.session['score'] = 0
                 del requests.session['marks']
                 update = User_stat.objects.create(name='C', score=b, user_id=user_id)
             else:
                 mark = requests.session['marks']
-                id = 1
-                b=0
+                id = int(requests.session['no'])
+                requests.session['score'] = 0
                 del requests.session['marks']
             return render(requests, 'score.html', {'marks': mark})
         else:
@@ -144,48 +141,48 @@ def ccheck(requests):
         session_id = requests.session["id"]
         data = C.objects.get(id=session_id)
         if data.ans == user_answer:
-            b = b+1
-            requests.session['marks'] = b
+            requests.session['score'] = int(requests.session['score']) + 1
+            requests.session['marks'] = int(requests.session['score'])
             return redirect('/cprog')
         else:
-            requests.session['marks'] = b
+            requests.session['marks'] = int(requests.session['score'])
             return redirect('/cprog')
 
 
 
 
 def check(requests):
-    global b
     if requests.method == 'POST':
         requests.session['next'] = 'next'
         user_answer =(requests.POST.get('q1'))
         session_id = requests.session["id"]
         data = Python.objects.get(id=session_id)
         if data.ans == user_answer:
-            b = b+1
-            requests.session['marks']=b
+            requests.session['score'] = int(requests.session['score']) + 1
+            requests.session['marks']= int(requests.session['score'])
             return redirect('/python')  
         else:
-            requests.session['marks']=b
-        return redirect('/python')
+            requests.session['marks'] = int(requests.session['score'])
+            return redirect('/python')
 
 
 def cquiz(requests):
-    global b
     if requests.method == 'POST':
         requests.session['next'] = 'next'
         user_answer = (requests.POST.get('q1'))
         session_id = requests.session["id"]
         data = Cplus.objects.get(id=session_id)
         if data.ans == user_answer:
-            b = b+1
-            requests.session['marks'] = b
+            requests.session['score'] = int(requests.session['score']) + 1
+            requests.session['marks'] = int(requests.session['score'])
         else:
-            requests.session['marks'] = b
+            requests.session['marks'] = int(requests.session['score'])
         return redirect('/cplus')
 
 
 def index(requests):
+    requests.session['score'] = 0
+    requests.session['no'] = 1
     return render(requests,'index.html')
 
 
