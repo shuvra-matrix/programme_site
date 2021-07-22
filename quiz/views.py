@@ -17,6 +17,7 @@ id =1
 b = 0
 def python(requests):
         global id
+        global b
         if 'next' in requests.session:
             id = id+1
             del requests.session['next']
@@ -24,12 +25,14 @@ def python(requests):
                 if requests.session.has_key('email'):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
-                    id=0
+                    id=1
+                    b=0
                     del requests.session['marks']
                     update = User_stat.objects.create(name='python', score=b, user_id=user_id)
                 else:
                     mark = requests.session['marks']
-                    id = 0
+                    id = 1
+                    b=0
                     del requests.session['marks']
                 return render(requests, 'score.html',{'marks':mark})
             else:
@@ -54,6 +57,7 @@ def python(requests):
 
 def cplus(requests):
         global id
+        global b
         if 'next' in requests.session:
             id = id+1
             del requests.session['next']
@@ -61,13 +65,15 @@ def cplus(requests):
                 if requests.session.has_key('email'):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
-                    id = 0
+                    id = 1
+                    b=0
                     del requests.session['marks']
                     update = User_stat.objects.create(
                         name='C++', score=b, user_id=user_id)
                 else:
                     mark = requests.session['marks']
-                    id = 0
+                    id = 1
+                    b=0
                     del requests.session['marks']
                 return render(requests, 'score.html', {'marks': mark})
             else:
@@ -92,6 +98,7 @@ def cplus(requests):
 
 def c(requests):
     global id
+    global b
     if 'next' in requests.session:
         id = id+1
         del requests.session['next']
@@ -99,12 +106,14 @@ def c(requests):
             if requests.session.has_key('email'):
                 user_id = requests.session['user_id']
                 mark = requests.session['marks']
-                id = 0
+                id = 1
+                b=0
                 del requests.session['marks']
                 update = User_stat.objects.create(name='C', score=b, user_id=user_id)
             else:
                 mark = requests.session['marks']
-                id = 0
+                id = 1
+                b=0
                 del requests.session['marks']
             return render(requests, 'score.html', {'marks': mark})
         else:
