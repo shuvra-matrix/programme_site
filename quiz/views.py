@@ -7,11 +7,12 @@ import smtplib
 import requests
 import urllib
 import json
+import os
 
 # Create your views here.
 
-MY_EMAIL = "shuvratcp@gmail.com"
-PASSWORD = "iamacool"
+MY_EMAIL = os.environ.get('MY_EMAIL')
+PASSWORD = os.environ.get('PASSWORD')
 
 
 def python(requests):
