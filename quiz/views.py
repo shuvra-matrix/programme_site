@@ -25,9 +25,10 @@ def python(requests):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
                     id= requests.session['no']
+                    scores = requests.session['score']
                     requests.session['score'] = 0
                     del requests.session['marks']
-                    update = User_stat.objects.create(name='python', score=b, user_id=user_id)
+                    update = User_stat.objects.create(name='python', score=scores, user_id=user_id)
                 else:
                     mark = requests.session['marks']
                     id = requests.session['no']
@@ -55,20 +56,20 @@ def python(requests):
         
 
 def cplus(requests):
-        requests.session['no'] = int(requests.session['no']) + 1
-        id = int(requests.session['no'])
         if 'next' in requests.session:
-            id = id+1
+            requests.session['no'] = int(requests.session['no']) + 1
+            id = int(requests.session['no'])
             del requests.session['next']
             if not Cplus.objects.filter(id=id).exists():
                 if requests.session.has_key('email'):
                     user_id = requests.session['user_id']
                     mark = requests.session['marks']
                     id = requests.session['no']
+                    scores = requests.session['score']
                     requests.session['score'] = 0
                     del requests.session['marks']
                     update = User_stat.objects.create(
-                        name='C++', score=b, user_id=user_id)
+                        name='C++', score=scores, user_id=user_id)
                 else:
                     mark = requests.session['marks']
                     id = requests.session['no']
@@ -96,18 +97,19 @@ def cplus(requests):
 
 
 def c(requests):
-    requests.session['no'] = int(requests.session['no']) + 1
-    id = int(requests.session['no'])
     if 'next' in requests.session:
+        requests.session['no'] = int(requests.session['no']) + 1
+        id = int(requests.session['no'])
         del requests.session['next']
         if not C.objects.filter(id=id).exists():
             if requests.session.has_key('email'):
                 user_id = requests.session['user_id']
                 mark = requests.session['marks']
                 id = int(requests.session['no'])
+                scores = requests.session['score']
                 requests.session['score'] = 0
                 del requests.session['marks']
-                update = User_stat.objects.create(name='C', score=b, user_id=user_id)
+                update = User_stat.objects.create(name='C', score=scores, user_id=user_id)
             else:
                 mark = requests.session['marks']
                 id = int(requests.session['no'])
@@ -135,7 +137,6 @@ def c(requests):
 
 
 def ccheck(requests):
-    global b
     if requests.method == 'POST':
         requests.session['next'] = 'next'
         user_answer = (requests.POST.get('q1'))
