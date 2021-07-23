@@ -325,8 +325,8 @@ def logout(requests):
         return render(requests,'index.html')
 
 def short(requestss):
-        requests.session['score'] = 0
-        requests.session['no'] = 1
+        requestss.session['score'] = 0
+        requestss.session['no'] = 1
         if requestss.method == 'POST':
             long = requestss.POST.get('short',)
             url = "https://api.short.io/domains/"

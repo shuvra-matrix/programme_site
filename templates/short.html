@@ -7,7 +7,7 @@
             <form action="{% url 'base:short' %}" method="POST">
                 {% csrf_token %}
                <div style="width: 80%;margin: auto; text-align: center;" class="input-groups  mb-3">
-                        <input id="short_input" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" name="short">
+                        <input id="short_input" type="text" class="form-control" placeholder="Long URL" aria-describedby="button-addon2" name="short">
                         <button style="margin-top: 1rem; padding: .8rem 1.5rem;" class="btn btn-danger" type="submit" id="button-addon2">Get</button>
                 </div>
             </form>
