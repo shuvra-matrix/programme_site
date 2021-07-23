@@ -27,12 +27,14 @@ def python(requests):
                     id= requests.session['no']
                     scores = requests.session['score']
                     requests.session['score'] = 0
+                    requests.session['no'] = 1
                     del requests.session['marks']
                     update = User_stat.objects.create(name='python', score=scores, user_id=user_id)
                 else:
                     mark = requests.session['marks']
                     id = requests.session['no']
                     requests.session['score'] = 0
+                    requests.session['no'] = 1
                     del requests.session['marks']
                 return render(requests, 'score.html',{'marks':mark})
             else:
@@ -67,6 +69,7 @@ def cplus(requests):
                     id = requests.session['no']
                     scores = requests.session['score']
                     requests.session['score'] = 0
+                    requests.session['no'] = 1
                     del requests.session['marks']
                     update = User_stat.objects.create(
                         name='C++', score=scores, user_id=user_id)
@@ -74,6 +77,7 @@ def cplus(requests):
                     mark = requests.session['marks']
                     id = requests.session['no']
                     requests.session['score'] = 0
+                    requests.session['no'] = 1
                     del requests.session['marks']
                 return render(requests, 'score.html', {'marks': mark})
             else:
@@ -108,12 +112,14 @@ def c(requests):
                 id = int(requests.session['no'])
                 scores = requests.session['score']
                 requests.session['score'] = 0
+                requests.session['no'] = 1
                 del requests.session['marks']
                 update = User_stat.objects.create(name='C', score=scores, user_id=user_id)
             else:
                 mark = requests.session['marks']
                 id = int(requests.session['no'])
                 requests.session['score'] = 0
+                requests.session['no'] = 1
                 del requests.session['marks']
             return render(requests, 'score.html', {'marks': mark})
         else:
