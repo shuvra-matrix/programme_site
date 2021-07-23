@@ -296,6 +296,8 @@ def verify(requests):
 
 
 def account(requests):
+    requests.session['score'] = 0
+    requests.session['no'] = 1
     if requests.session.has_key('email'):
         id = requests.session['user_id']
         user_data = User.objects.get(id=id)
@@ -313,6 +315,8 @@ def logout(requests):
         try:
             del requests.session['email']
             del requests.session['log']
+            del requests.session['scores']
+            del requests.session['no']
             message = "log Out Successfully"
             return render(requests,'index.html',{'message':message})
         except:
@@ -321,6 +325,8 @@ def logout(requests):
         return render(requests,'index.html')
 
 def short(requestss):
+        requests.session['score'] = 0
+        requests.session['no'] = 1
         if requestss.method == 'POST':
             long = requestss.POST.get('short',)
             url = "https://api.short.io/domains/"
